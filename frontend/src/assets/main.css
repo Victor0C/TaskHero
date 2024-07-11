@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 100%;
+}
+
+.bg-myGreen {
+  background-color: rgba(4, 223, 66, 0.807);
+}

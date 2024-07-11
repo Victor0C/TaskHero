@@ -1,0 +1,102 @@
+<template>
+  <div class="d-flex flex-column vh-100">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-myGreen">
+        <div class="container-fluid">
+          <a class="navbar-brand">Task Hero</a>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse d-lg-block" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ms-auto">
+              <li v-for="(item, index) in menuItems" :key="index" class="nav-item">
+                <router-link
+                  :to="item.route"
+                  class="nav-link"
+                  :class="{ myActive: isRouteActive(item.route)}"
+                  >{{ item.text }}</router-link
+                >
+              </li>
+              <li>
+                <a class="nav-link">Sair</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="offcanvas offcanvas-end"
+        style="width: 45%"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header bg-myGreen">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li v-for="(item, index) in menuItems" :key="index" class="nav-item">
+              <router-link
+                :to="item.route"
+                class="nav-link"
+                :class="{ active: isRouteActive(item.route) }"
+                >{{ item.text }}</router-link
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="container-fluid">
+      <router-view></router-view>
+    </main>
+
+    <footer class="container-fluid align-items-center py-3 mt-auto bg-myGreen">
+        <p class="text-center m-0">© 2024 Victor Hugo Oliveira Cunha</p>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MainLayout',
+  data() {
+    return {
+      menuItems: [
+        { text: 'Tarefas', route: 'tasks' },
+        { text: 'Usuários', route: 'users' },
+      ]
+    }
+  },
+  methods: {
+    isRouteActive(route) {
+      return this.$route.name == route
+    }
+  }
+}
+</script>
+
+<style scoped>
+.vh-100 {
+  height: 100vh;
+}
+
+.myActive{
+  color: white;
+}
+</style>
