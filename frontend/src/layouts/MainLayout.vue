@@ -3,7 +3,15 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-myGreen">
         <div class="container-fluid">
-          <a class="navbar-brand">Task Hero</a>
+          <div class="d-flex align-items-center">
+            <img
+            src="../assets/logoWhite.png"
+            alt="Logo"
+            class="img-fluid me-2"
+            style="max-height: 1.8rem"
+            />
+            <a class="navbar-brand text-light fs-3 fst-italic">Task Hero</a>
+          </div>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -18,13 +26,16 @@
               <li v-for="(item, index) in menuItems" :key="index" class="nav-item">
                 <router-link
                   :to="item.route"
-                  class="nav-link"
-                  :class="{ myActive: isRouteActive(item.route)}"
+                  class="nav-link fst-italic fs-5"
+                  :class="{
+                    'text-light': isRouteActive(item.route),
+                    'text-decoration-underline': isRouteActive(item.route)
+                  }"
                   >{{ item.text }}</router-link
                 >
               </li>
               <li>
-                <a class="nav-link">Sair</a>
+                <a class="nav-link fst-italic fs-5">Sair</a>
               </li>
             </ul>
           </div>
@@ -67,7 +78,7 @@
     </main>
 
     <footer class="container-fluid align-items-center py-3 mt-auto bg-myGreen">
-        <p class="text-center m-0">© 2024 Victor Hugo Oliveira Cunha</p>
+      <p class="text-center m-0">© 2024 Victor Hugo Oliveira Cunha</p>
     </footer>
   </div>
 </template>
@@ -79,7 +90,7 @@ export default {
     return {
       menuItems: [
         { text: 'Tarefas', route: 'tasks' },
-        { text: 'Usuários', route: 'users' },
+        { text: 'Usuários', route: 'users' }
       ]
     }
   },
@@ -96,7 +107,7 @@ export default {
   height: 100vh;
 }
 
-.myActive{
+.myActive {
   color: white;
 }
 </style>

@@ -3,7 +3,15 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-myGreen">
         <div class="container-fluid">
-          <a class="navbar-brand">Task Hero</a>
+          <div class="d-flex align-items-center">
+            <img
+            src="../assets/logoWhite.png"
+            alt="Logo"
+            class="img-fluid me-2"
+            style="max-height: 1.8rem"
+            />
+            <a class="navbar-brand text-light fs-3 fst-italic">Task Hero</a>
+          </div>
         </div>
       </nav>
     </header>
