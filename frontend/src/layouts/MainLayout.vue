@@ -44,13 +44,16 @@
 
       <div
         class="offcanvas offcanvas-end"
+        :class="{
+          invisible: openModal
+        }"
         style="width: 45%"
         tabindex="-1"
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
       >
         <div class="offcanvas-header bg-myGreen">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <h5 class="offcanvas-title text-light" id="offcanvasNavbarLabel">Menu</h5>
           <button
             type="button"
             class="btn-close text-reset"
@@ -64,8 +67,13 @@
               <router-link
                 :to="item.route"
                 class="nav-link"
-                :class="{ active: isRouteActive(item.route) }"
-                >{{ item.text }}</router-link
+                :class="{
+                  'text-bold': isRouteActive(item.route),
+                  'text-decoration-underline': isRouteActive(item.route),
+                  'fs-4': isRouteActive(item.route)
+                }"
+                
+                ><p data-bs-dismiss="offcanvas">{{ item.text }}</p></router-link
               >
             </li>
             <li>
