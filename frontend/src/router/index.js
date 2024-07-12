@@ -1,17 +1,18 @@
+import Cookies from 'js-cookie'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path:'/login',
+      path: '/login',
       component: () => import('../layouts/AuthLayout.vue'),
       children: [
         {
           path: '/login',
           name: 'login',
           component: () => import('../views/LoginView.vue')
-        },
+        }
       ]
     },
     {
@@ -25,16 +26,28 @@ const router = createRouter({
         {
           path: '/tasks',
           name: 'tasks',
-          component: () => import('../views/TaskView.vue')
+          component: () => import('../views/TaskView.vue'),
+          meta: { requiresAuth: true }
         },
         {
           path: '/users',
           name: 'users',
-          component: () => import('../views/UsersView.vue')
-        },
+          component: () => import('../views/UsersView.vue'),
+          meta: { requiresAuth: true }
+        }
       ]
-    },
+    }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = Cookies.get('isAuthenticated')
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

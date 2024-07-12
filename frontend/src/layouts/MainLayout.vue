@@ -5,10 +5,10 @@
         <div class="container-fluid">
           <div class="d-flex align-items-center">
             <img
-            src="../assets/logoWhite.png"
-            alt="Logo"
-            class="img-fluid me-2"
-            style="max-height: 1.8rem"
+              src="../assets/logoWhite.png"
+              alt="Logo"
+              class="img-fluid me-2"
+              style="max-height: 1.8rem"
             />
             <a class="navbar-brand text-light fs-3 fst-italic">Task Hero</a>
           </div>
@@ -35,7 +35,7 @@
                 >
               </li>
               <li>
-                <a class="nav-link fst-italic fs-5">Sair</a>
+                <a class="nav-link fst-italic fs-5" @click="logout">Sair</a>
               </li>
             </ul>
           </div>
@@ -68,6 +68,9 @@
                 >{{ item.text }}</router-link
               >
             </li>
+            <li>
+              <a class="nav-link" @click="logout">Sair</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -84,6 +87,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   name: 'MainLayout',
   data() {
@@ -97,6 +102,13 @@ export default {
   methods: {
     isRouteActive(route) {
       return this.$route.name == route
+    },
+    logout() {
+      Cookies.remove('authToken')
+      Cookies.remove('userID')
+      Cookies.remove('userRole')
+      Cookies.remove('isAuthenticated')
+      this.$router.push('/login')
     }
   }
 }

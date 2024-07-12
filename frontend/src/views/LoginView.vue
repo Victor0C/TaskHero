@@ -7,6 +7,7 @@
           v-model="email"
           type="email"
           class="form-control"
+          :class="{ 'is-invalid': emailError }"
           id="email1"
           aria-describedby="emailHelp"
           placeholder="email@exemplo.com"
@@ -19,10 +20,17 @@
           v-model="password"
           type="password"
           class="form-control"
+          :class="{ 'is-invalid': passwordError }"
           id="Password1"
           placeholder="******"
         />
         <small v-if="!passwordValid" class="text-danger">Por favor, insira uma senha válida.</small>
+      </div>
+      <div v-if="credentialsError" class="alert alert-danger" role="alert">
+        Credenciais incorretas...
+      </div>
+      <div v-if="genericError" class="alert alert-danger" role="alert">
+        Algo deu errado... Tente novamente mais tarde.
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn bg-myButton rounded-2">Entrar</button>
@@ -34,7 +42,6 @@
 <script>
 import login from '../service/login.js'
 
-
 export default {
   name: 'LoginForm',
   data() {
@@ -42,31 +49,51 @@ export default {
       email: '',
       password: '',
       emailValid: true,
-      passwordValid: true
+      passwordValid: true,
+      emailError: false,
+      passwordError: false,
+      credentialsError: false,
+      genericError: false
     }
   },
   methods: {
     async submitForm() {
       this.emailValid = this.validateEmail()
       this.passwordValid = this.validatePassword()
-
+      this.credentialsError = false
+      this.genericError = false
 
       if (this.emailValid && this.passwordValid) {
-
         const response = await login(this.email, this.password)
 
-        localStorage.setItem('token', response.token);
+        if (response.error) {
+          response.error == 401 ? (this.credentialsError = true) : (this.genericError = true)
+          return
+        }
+
+        this.$router.push('/tasks');
 
         this.email = ''
         this.password = ''
       }
     },
     validateEmail() {
-      return /\S+@\S+\.\S+/.test(this.email)
+      if (/\S+@\S+\.\S+/.test(this.email)) {
+        return true
+      }
+
+      this.emailError = true
+
+      return false
     },
     validatePassword() {
-      return this.password.length > 0
-    },
+      if (this.password.length <= 0) {
+        this.passwordError = true
+        return false
+      }
+
+      return true
+    }
   }
 }
 </script>
