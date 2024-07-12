@@ -73,7 +73,7 @@
       </div>
     </header>
 
-    <main class="container-fluid">
+    <main class="container-fluid flex-grow-1 my-4">
       <router-view></router-view>
     </main>
 
@@ -105,9 +105,5 @@ export default {
 <style scoped>
 .vh-100 {
   height: 100vh;
-}
-
-.myActive {
-  color: white;
 }
 </style>

@@ -16,7 +16,7 @@
       </nav>
     </header>
 
-    <main class="container-fluid">
+    <main class="container-fluid flex-grow-1 my-4">
       <router-view></router-view>
     </main>
 
