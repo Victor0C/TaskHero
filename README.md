@@ -2,7 +2,7 @@ ESSE É UM TESTE TÉCNICO PARA UMA VAGA DE ESTÁGIO.
 
 Processo de instalação e configuração da aplicação:
 
--Na pasta do backend rode o "compose install" para instalar as dependências, crie seu arquivo .env conforme o .env.example (Só precisa colocar as configurações do banco de dados). Logo após "rode php artisan serve" para iniciar o servidor backend
+-Na pasta do backend rode o "compose install" para instalar as dependências, crie seu arquivo .env conforme o .env.example (Só precisa colocar as configurações do banco de dados). Rode as migrations com "php artisan migrate" para criar as tabelas (Você deve ter o database já criado).Logo após "rode php artisan serve" para iniciar o servidor backend
 -Na pasta de frontend rode o "npm install" para instalar as dependências, crie seu arquivo .env conforme o .env.example. Logo após "npm run dev" para iniciar o servidor da aplicação frontend
 -Feito os passos anteriores, basta acessar a rota informada no terminal para ter acesso a aplicação
 
