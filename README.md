@@ -1,6 +1,13 @@
 ESSE É UM TESTE TÉCNICO PARA UMA VAGA DE ESTÁGIO. 
 
-ABAIXO AS ORIENTAÇÕES SOBRE O PROJETO:
+Processo de instalação e configuração da aplicação:
+
+-Na pasta do backend rode o "compose install" para instalar as dependências, crie seu arquivo .env conforme o .env.example (Só precisa colocar as configurações do banco de dados). Logo após "rode php artisan serve" para iniciar o servidor backend
+-Na pasta de frontend rode o "npm install" para instalar as dependências, crie seu arquivo .env conforme o .env.example. Logo após "npm run dev" para iniciar o servidor da aplicação frontend
+-Feito os passos anteriores, basta acessar a rota informada no terminal para ter acesso a aplicação
+
+
+ABAIXO  AS ORIENTAÇÕES SOBRE O PROJETO:
 
 Teste de Desenvolvimento Web com Laravel e Vue.js
 
