@@ -15,6 +15,10 @@
       </button>
     </div>
 
+    <div v-if="tasks.length == 0 && !loading" class="alert alert-warning" role="alert">
+      Nenhuma tarefa encontrada...
+    </div>
+
     <div class="accordion w-100" :id="`${typeTasks}Accordion`">
       <Task v-for="task in tasks" :task="task" :typeTask="typeTasks"></Task>
     </div>
@@ -50,7 +54,8 @@ export default {
   props: {
     typeTasks: { type: String, required: true },
     tasks: { type: Array, required: true },
-    pagination: { type: Object, required: true }
+    pagination: { type: Object, required: true },
+    loading: { type: Boolean, required: true }
   },
   components: {
     Task

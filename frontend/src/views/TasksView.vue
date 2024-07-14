@@ -4,11 +4,13 @@
       <h2>Adicionar uma tarefa</h2>
       <NewTask @taskAdded=""></NewTask>
     </div>
+    
 
     <ListTasks
       :tasks="listTasks.tasks"
       :typeTasks="'toDo'"
       :pagination="listTasks.pagination"
+      :loading="loading"
       @searchTasks="searchTasks"
       @fetchPage="fetchPage"
     ></ListTasks>
@@ -42,7 +44,8 @@ export default {
           links: []
         }
       },
-      searchQuery: ''
+      searchQuery: '',
+      loading: true
     }
   },
   created() {
@@ -51,6 +54,7 @@ export default {
   },
   methods: {
     async fetchTasks() {
+      this.loading = true
       const data = await getTasks(this.searchQuery)
 
       if (data.error) {
@@ -59,13 +63,14 @@ export default {
       }
 
       this.fillDatas(data)
+      this.loading = false
     },
     searchTasks(searchQuery) {
       this.searchQuery = searchQuery
       this.fetchTasks()
     },
     async fetchPage(url) {
-      console.log('url:'+ url)
+      this.loading = true
       const data = await getPageTasks(url)
 
       if (data.error) {
@@ -74,6 +79,7 @@ export default {
       }
 
       this.fillDatas(data)
+      this.loading = false
     },
     fillDatas(data) {
       this.listTasks.tasks = data.data
