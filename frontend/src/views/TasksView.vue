@@ -2,7 +2,7 @@
   <div class="d-flex myContainer justify-content-evenly">
     <div v-if="this.userRole == 1">
       <h2>Adicionar uma tarefa</h2>
-      <NewTask @taskAdded=""></NewTask>
+      <NewTask @taskAdded="fetchTasks"></NewTask>
     </div>
     
 
