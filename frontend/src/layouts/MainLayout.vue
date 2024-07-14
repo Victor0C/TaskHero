@@ -23,7 +23,7 @@
           </button>
           <div class="collapse navbar-collapse d-lg-block" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto">
-              <li v-for="(item, index) in menuItems" :key="index" class="nav-item">
+              <li v-for="(item, index) in filteredMenuItems" :key="index" class="nav-item">
                 <router-link
                   :to="item.route"
                   class="nav-link fst-italic fs-5"
@@ -44,9 +44,6 @@
 
       <div
         class="offcanvas offcanvas-end"
-        :class="{
-          invisible: openModal
-        }"
         style="width: 45%"
         tabindex="-1"
         id="offcanvasNavbar"
@@ -63,7 +60,7 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav">
-            <li v-for="(item, index) in menuItems" :key="index" class="nav-item">
+            <li v-for="(item, index) in filteredMenuItems" :key="index" class="nav-item">
               <router-link
                 :to="item.route"
                 class="nav-link"
@@ -72,8 +69,8 @@
                   'text-decoration-underline': isRouteActive(item.route),
                   'fs-4': isRouteActive(item.route)
                 }"
-                
-                ><p data-bs-dismiss="offcanvas">{{ item.text }}</p></router-link
+              >
+                <p data-bs-dismiss="offcanvas">{{ item.text }}</p></router-link
               >
             </li>
             <li>
@@ -102,9 +99,17 @@ export default {
   data() {
     return {
       menuItems: [
-        { text: 'Tarefas', route: 'tasks' },
-        { text: 'Usuários', route: 'users' }
-      ]
+        { text: 'Tarefas', route: 'tasks', private: false },
+        { text: 'Usuários', route: 'users', private: true }
+      ],
+      userRole: null
+    }
+  },
+  computed: {
+    filteredMenuItems() {
+      return this.menuItems.filter((item) => {
+        return !item.private || (item.private && this.userRole == 1)
+      })
     }
   },
   methods: {
@@ -118,6 +123,9 @@ export default {
       Cookies.remove('isAuthenticated')
       this.$router.push('/login')
     }
+  },
+  created() {
+    this.userRole = Cookies.get('userRole')
   }
 }
 </script>

@@ -76,6 +76,7 @@ class EloquentTasksRepository implements TasksRepositoryInterface
         if ($desc) {
             $query->where('desc', 'like', '%' . $desc . '%');
         }
+       
 
         return $query->paginate($this->paginate);
     }

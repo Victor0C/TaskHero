@@ -71,6 +71,7 @@ export default {
           return
         }
 
+      
         this.$router.push('/tasks');
 
         this.email = ''

@@ -26,14 +26,14 @@ const router = createRouter({
         {
           path: '/tasks',
           name: 'tasks',
-          component: () => import('../views/TaskView.vue'),
+          component: () => import('../views/TasksView.vue'),
           meta: { requiresAuth: true }
         },
         {
           path: '/users',
           name: 'users',
           component: () => import('../views/UsersView.vue'),
-          meta: { requiresAuth: true }
+          meta: { requiresAuth: true, private: true }
         }
       ]
     }
@@ -42,9 +42,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = Cookies.get('isAuthenticated')
+  const userRole = Cookies.get('userRole')
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     next('/login')
+  } else if (to.meta.private && userRole != 1) {
+    next(from)
   } else {
     next()
   }

@@ -9,9 +9,9 @@ export default async function login(email, password){
         Cookies.set('userID', response.user_id, { expires: 1 })
         Cookies.set('userRole', response.role, { expires: 1 })
         Cookies.set('isAuthenticated', true, { expires: 1 })
-
+       
         return true
     }catch(error){
-        return {error: error.response.status}
+        return {error: error.response?.status}
     }
 }

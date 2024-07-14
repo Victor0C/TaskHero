@@ -23,14 +23,16 @@ class TasksController extends Controller
 
         if ($request->query('done') == 1) {
             $tasks = $this->taskService->findDone((int)$user->id, $request->query('title', ''), $request->query('desc', ''));
+           
         }
         if ($request->query('done') == 0) {
             $tasks = $this->taskService->findNotDone((int)$user->id, $request->query('title', ''), $request->query('desc', ''));
+            
         }
-        if(!$request->query('done')) {
+        if($request->query('done') =='') {
             $tasks = $this->taskService->findByUser((int)$user->id, $request->query('title', ''), $request->query('desc', ''));
         }
-
+       
         return response()->json($tasks);
     }
 
