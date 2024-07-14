@@ -1,46 +1,41 @@
 <template>
   <div class="myContainer">
-    <form @submit.prevent="applySearchFilter" class="mb-3 input-group">
-      <input
-        type="text"
-        v-model="searchQuery"
-        placeholder="Pesquisar tarefas..."
-        class="form-control"
-      />
-      <button type="submit" class="btn btn-sm btn-primary ms-2" aria-label="Pesquisar">
+    <div class="d-flex mb-2 gap-1 w-100">
+      <form class="w-100">
+        <input
+          @keyup.enter=""
+          type="text"
+          v-model="searchQuery"
+          placeholder="Pesquisar tarefas..."
+          class="form-control"
+        />
+      </form>
+      <button @click="" class="btn myButtonDefault" aria-label="Pesquisar">
         Pesquisar
       </button>
-    </form>
+    </div>
 
-    <Tasks @taskEdited='fetchTasks()' :tasks="filteredTasks"></Tasks>
+    <div v-for="task in tasks" class="accordion w-100" :id="`${typeTasks}Accordion`">
+      <Task :task="task"></Task>
+    </div>
 
-    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-      <ul class="pagination mt-4">
-        <li v-for="(link, index) in pagination.links" :key="index" class="page-item">
-          <a
-            class="page-link"
-            href="#"
-            v-if="link.url"
-            @click.prevent="pageTasks(link.url)"
-            :class="{ active: link.active }"
-          >
+    <nav v-if="pagination.total_page > 1" aria-label="Page navigation example">
+      <ul class="pagination mt-2">
+        <li
+          v-for="link in pagination.links"
+          @click=""
+          class="page-item"
+          :class="{ active: link.active, disabled: link.url == null }"
+        >
+          <button class="page-link">
             {{
-              link.label.includes('Next')
-                ? 'Próximo'
-                : link.label.includes('Previous')
-                  ? 'Anterior'
+              link.label.includes('Previous')
+                ? 'Anterior'
+                : link.label.includes('Next')
+                  ? 'Próximo'
                   : link.label
             }}
-          </a>
-          <span class="page-link" v-else>
-            {{
-              link.label.includes('Next')
-                ? 'Próximo'
-                : link.label.includes('Previous')
-                  ? 'Anterior'
-                  : link.label
-            }}
-          </span>
+          </button>
         </li>
       </ul>
     </nav>
@@ -48,66 +43,32 @@
 </template>
 
 <script>
-import Tasks from './Tasks.vue'
-import getPageTasks from '../service/getPageTasks.js'
-import getTasks from '../service/tasks.js'
-
+import Task from './Task.vue'
 export default {
   name: 'ListTasks',
   props: {
-    tasksDone: Number,
-    update: Boolean
+    typeTasks: '',
+    tasks: [],
+    pagination:{}
   },
   components: {
-    Tasks
+    Task
   },
   data() {
     return {
-      filteredTasks: [],
-      searchQuery: '',
-      pagination: {}
-    }
-  },
-  emits: ['taskEdited'],
-  methods: {
-    async fetchTasks() {
-      const params = {
-        done: this.tasksDone,
-        title: this.searchQuery.trim()
+      pagination: {
+        current_page: 1,
+        total_page: 1,
+        links: []
       }
-      const response = await getTasks(params)
-      this.filteredTasks = response.data
-      this.pagination = response
-    },
-    async pageTasks(url) {
-      const response = await getPageTasks(url)
-      this.filteredTasks = response.data
-      this.pagination = response
-    },
-    applySearchFilter() {
-      this.fetchTasks()
-    },
-    tellDad(){
-      this.$emit('taskEdited')
     }
-
-  },
-  created() {
-    this.fetchTasks()
-
-    this.$watch('update', (newValue, oldValue) => {
-      if (newValue !== oldValue) {
-        this.fetchTasks()
-      }
-    })
-  },
+  }
 }
 </script>
 
-
 <style scoped>
 .myContainer {
-  width: 40rem;
+  width: 80rem;
 }
 
 @media screen and (max-width: 750px) {
