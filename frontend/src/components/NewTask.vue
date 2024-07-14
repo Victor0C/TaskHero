@@ -49,7 +49,7 @@
         Algo deu errado... Tente novamente mais tarde.
       </div>
       <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary myButton rounded-2">Adicionar Tarefa</button>
+        <button type="submit" class="btn myButtonDefault addButton rounded-2">Adicionar Tarefa</button>
       </div>
     </form>
   </div>
@@ -107,7 +107,6 @@ export default {
         }
 
         this.$emit('taskAdded')
-        this.selectedUser = null
         this.title = ''
         this.description = ''
         this.dueDate = ''
@@ -134,7 +133,7 @@ export default {
 </script>
 
 <style scoped>
-.myButton {
+.addButton {
   width: 15rem;
   height: 2.5rem;
 }
