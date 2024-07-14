@@ -10,3 +10,50 @@ body {
 .bg-myGreen {
   background-color: rgba(4, 223, 66, 0.807);
 }
+
+.myButtonDefault {
+  color: #fff;
+  background-color: rgba(4, 223, 66, 0.807);
+  border-color: rgba(4, 223, 66, 0.807);
+}
+
+.myButtonDefault:hover {
+  color: #fff;
+  background-color: rgba(4, 223, 66, 1);
+  border-color: rgba(4, 223, 66, 1);
+}
+
+.myButtonDefault:focus,
+.myButtonDefault.focus {
+  color: #fff;
+  background-color: rgba(4, 223, 66, 1);
+  border-color: rgba(4, 223, 66, 1);
+  box-shadow: 0 0 0 0.25rem rgba(4, 223, 66, 0.5);
+}
+
+.myButtonDefault:disabled,
+.myButtonDefault.disabled {
+  color: #fff;
+  background-color: rgba(4, 223, 66, 0.807);
+  border-color: rgba(4, 223, 66, 0.807);
+}
+
+.myButtonDefault:not(:disabled):not(.disabled):active,
+.myButtonDefault:not(:disabled):not(.disabled).active,
+.show > .myButtonDefault.dropdown-toggle {
+  color: #fff;
+  background-color: rgba(4, 223, 66, 1);
+  border-color: rgba(4, 223, 66, 1);
+}
+
+.myButtonDefault:not(:disabled):not(.disabled):active:focus,
+.myButtonDefault:not(:disabled):not(.disabled).active:focus,
+.show > .myButtonDefault.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(4, 223, 66, 0.5);
+}
+
+@media screen and (max-width: 750px) {
+  .myButton {
+    margin-top: 3rem;
+  }
+}
