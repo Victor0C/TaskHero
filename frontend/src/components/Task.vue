@@ -18,7 +18,7 @@
     <div
       :id="`${this.task.id}taskAccordion`"
       class="accordion-collapse collapse"
-      data-bs-parent="#ContactAccordion"
+      :data-bs-parent="`#${typeTask}Accordion`"
     >
       <div class="accordion-body d-flex">
         <p><span class="fw-semibold"></span>{{ task.desc }}</p>
@@ -37,7 +37,8 @@ import ModalDeleteTask from './modals/ModalDeleteTask.vue'
 export default {
   name: 'Task',
   props: {
-    task: null
+    task: null,
+    typeTask: ''
   },
   components: {
     ModalEditTask,

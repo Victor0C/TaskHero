@@ -1,18 +1,20 @@
 import api from './api'
 import Cookies from 'js-cookie'
 
-export default async function getTasks(params) {
+export default async function getTasks(title='') {
   const token = Cookies.get('authToken')
 
   try {
-    const response = await api.get('/tasks', {
-      params: params,
+    const { data } = await api.get('/tasks', {
+      params: {
+        title
+      },
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
 
-    return response.data
+    return data
   } catch (error) {
     return { error: error.response.status }
   }

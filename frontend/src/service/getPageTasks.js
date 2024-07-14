@@ -5,13 +5,13 @@ export default async function getPageTasks(url) {
   const token = Cookies.get('authToken')
 
   try {
-    const response = await api.get(url, {
+    const {data} = await api.get(url, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
 
-    return response.data
+    return data
   } catch (error) {
     return { error: error.response.status }
   }
