@@ -20,7 +20,7 @@
     </div>
 
     <div class="accordion w-100" :id="`CompletedTask=${completedTasks}Accordion`">
-      <Task v-for="task in tasks" :task="task" :completedTask="completedTasks" @taskUpdated='refreshList'></Task>
+      <Task v-for="task in tasks" :task="task" :completedTask="completedTasks" @refreshList='refreshList'></Task>
     </div>
 
     <nav v-if="pagination.total_page > 1" aria-label="Page navigation example">

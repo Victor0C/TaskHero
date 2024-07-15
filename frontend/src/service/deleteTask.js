@@ -1,7 +1,7 @@
 import api from './api'
 import Cookies from 'js-cookie'
 
-export default async function deleteTasks(taskID) {
+export default async function deleteTask(taskID) {
   const token = Cookies.get('authToken')
 
   try {

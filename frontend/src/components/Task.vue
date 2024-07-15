@@ -23,8 +23,8 @@
       <div class="accordion-body d-flex">
         <p><span class="fw-semibold"></span>{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
-          <ModalEditTask v-if="!completedTask" @taskUpdated="taskUpdated" :task="task"></ModalEditTask>
-          <ModalDeleteTask v-if="!completedTask":task="task"></ModalDeleteTask>
+          <ModalEditTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalEditTask>
+          <ModalDeleteTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalDeleteTask>
         </div>
       </div>
     </div>
@@ -36,14 +36,14 @@ import ModalDeleteTask from './modals/ModalDeleteTask.vue'
 
 export default {
   name: 'Task',
-  emits: ['taskUpdated'],
+  emits: ['refreshList'],
   props: {
     task: {
       type: Object,
       required: true
     },
     completedTask:{
-      type:String,
+      type:Boolean,
       required: true
     }
   },
@@ -61,8 +61,8 @@ export default {
 
       return formattedDate
     },
-    taskUpdated(){
-      this.$emit('taskUpdated')
+    refreshList(){
+      this.$emit('refreshList')
     }
   }
 }

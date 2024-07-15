@@ -107,7 +107,7 @@ import editTask from '../../service/editTask.js'
 
 export default {
   name: 'ModalEditTask',
-  emits: ['taskUpdated'],
+  emits: ['refreshList'],
   props: {
     task: {
       type: Object,
@@ -124,7 +124,7 @@ export default {
       validations: {
         title: { invalid: false },
         description: { invalid: false },
-        expiredDate: { invalid: false },
+        expiredDate: { invalid: false }
       },
       minDate: new Date().toISOString().split('T')[0]
     }
@@ -134,7 +134,6 @@ export default {
       this.validateTitle()
       this.validateDescription()
       this.validateDate()
-
 
       if (this.formOK) {
         const taskData = {
@@ -146,10 +145,10 @@ export default {
         const data = await editTask(this.task.id, taskData)
 
         if (data.error) {
-        alert('Algo deu errado com a edição da tarefa...')
-        return
-      }
-        this.$emit('taskUpdated')
+          alert('Algo deu errado com a edição da tarefa...')
+          return
+        }
+        this.$emit('refreshList')
       }
     },
     validateTitle() {

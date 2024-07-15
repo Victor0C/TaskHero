@@ -18,7 +18,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" :id="`${task.id}deleteModalLabel`">
-            Deletar a tarefa de {{ task.title }}
+            Deletar a tarefa "<span class="text-danger">{{ task.title }}</span
+            >"
           </h1>
           <button
             type="button"
@@ -28,10 +29,10 @@
           ></button>
         </div>
         <div class="modal-body">
-          <h1>Corpo do modal de deleção de tarefa</h1>
+          <p class="fs-5">Tem certeza em deletar a tarefa "{{ task.title }}"?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Deletar</button>
+          <button @click="removeTask" type="button" class="btn btn-danger" data-bs-dismiss="modal">Deletar</button>
         </div>
       </div>
     </div>
@@ -39,11 +40,26 @@
 </template>
 
 <script>
+import deleteTask from '@/service/deleteTask.js'
+
 export default {
   name: 'ModalDeleteTask',
-  emits: ['taskDeleted'],
+  emits: ['refreshList'],
   props: {
-    task: null
+    task: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    async removeTask() {
+      const data = await deleteTask(this.task.id)
+      if (data.error) {
+        alert('Algo deu errado com a deleção da tarefa...')
+        return
+      }
+      this.$emit('refreshList')
+    }
   }
 }
 </script>
