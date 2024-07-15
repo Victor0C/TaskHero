@@ -55,7 +55,7 @@ export default {
   methods: {
     async fetchTasks() {
       this.loading = true
-      const data = await getTasks(this.searchQuery)
+      const data = await getTasks(this.searchQuery, 0)
 
       if (data.error) {
         alert('Algo deu errado com a busca da lista de tarefas...')
