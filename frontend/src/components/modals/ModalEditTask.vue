@@ -52,7 +52,7 @@
                 v-model="desc"
                 @blur="validateDescription"
                 type="text"
-                maxlength="150" 
+                maxlength="150"
                 class="form-control"
                 :class="{ 'is-invalid': validations.description.invalid }"
                 :id="`editDescriptionInput${task.id}`"

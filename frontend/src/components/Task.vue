@@ -28,8 +28,8 @@
       <div class="accordion-body d-flex">
         <p class="word-wrap-break max-width-100 overflow-hidden">{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
-          <ModalEditTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalEditTask>
-          <ModalDeleteTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalDeleteTask>
+          <ModalEditTask v-if="!completedTask" @refreshList="refreshList" :task="task" :key="`${task.id}-edit-modal`"></ModalEditTask>
+          <ModalDeleteTask v-if="!completedTask" @refreshList="refreshList" :task="task" :key="`${task.id}-delete-modal`" ></ModalDeleteTask>
         </div>
       </div>
     </div>
