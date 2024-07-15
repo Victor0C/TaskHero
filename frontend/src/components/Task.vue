@@ -11,7 +11,8 @@
       >
         <div class="d-flex justify-content-between align-items-center w-100 me-2">
           {{ task.title }}
-          <small class="text-muted ms-2">Conclusão para {{ formatDate(task.expired_date) }}</small>
+          <small v-if="!completedTask" class="text-muted ms-2">Conclusão para {{ formatDate(task.expired_date) }}</small>
+          <small v-if="completedTask" class="text-muted ms-2">Concluído em {{ formatDate(task.updated_at) }}</small>
         </div>
       </button>
     </h2>
@@ -64,6 +65,9 @@ export default {
     refreshList(){
       this.$emit('refreshList')
     }
-  }
+  },
+ created(){
+  console.log(this.task)
+ }
 }
 </script>

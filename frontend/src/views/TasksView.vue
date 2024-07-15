@@ -34,7 +34,6 @@ export default {
   },
   data() {
     return {
-      updateLists: false,
       userRole: null,
       listTasks: {
         tasks: [],
