@@ -32,7 +32,9 @@
           <p class="fs-5">Tem certeza em deletar a tarefa "{{ task.title }}"?</p>
         </div>
         <div class="modal-footer">
-          <button @click="removeTask" type="button" class="btn btn-danger" data-bs-dismiss="modal">Deletar</button>
+          <button @click="removeTask" type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Deletar
+          </button>
         </div>
       </div>
     </div>

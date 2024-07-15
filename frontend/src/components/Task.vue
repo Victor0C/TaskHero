@@ -25,11 +25,21 @@
       class="accordion-collapse collapse"
       :data-bs-parent="`#CompletedTask=${completedTask}Accordion`"
     >
-      <div class="accordion-body d-flex">
+      <div class="accordion-body">
         <p class="word-wrap-break max-width-100 overflow-hidden">{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
-          <ModalEditTask v-if="!completedTask" @refreshList="refreshList" :task="task" :key="`${task.id}-edit-modal`"></ModalEditTask>
-          <ModalDeleteTask v-if="!completedTask" @refreshList="refreshList" :task="task" :key="`${task.id}-delete-modal`" ></ModalDeleteTask>
+          <ModalEditTask
+            v-if="!completedTask"
+            @refreshList="refreshList"
+            :task="task"
+            :key="`${task.id}-edit-modal`"
+          ></ModalEditTask>
+          <ModalDeleteTask
+            v-if="!completedTask"
+            @refreshList="refreshList"
+            :task="task"
+            :key="`${task.id}-delete-modal`"
+          ></ModalDeleteTask>
         </div>
       </div>
     </div>
@@ -58,7 +68,7 @@ export default {
   },
   methods: {
     formatDate(date) {
-      if(!this.completedTask){
+      if (!this.completedTask) {
         date = date + 'T00:00:00'
       }
 
@@ -76,3 +86,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@media screen and (max-width: 750px) {
+  .myAccordion {
+    display: flex;
+    flex-direction: column !important;
+    width: 100%;
+  }
+}
+</style>
