@@ -35,6 +35,7 @@
               <input
                 v-model="title"
                 @blur="validateTitle"
+                maxlength="30"
                 type="text"
                 class="form-control"
                 :class="{ 'is-invalid': validations.title.invalid }"
@@ -51,6 +52,7 @@
                 v-model="desc"
                 @blur="validateDescription"
                 type="text"
+                maxlength="150" 
                 class="form-control"
                 :class="{ 'is-invalid': validations.description.invalid }"
                 :id="`editDescriptionInput${task.id}`"

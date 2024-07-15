@@ -12,6 +12,7 @@
         <input
           v-model="title"
           type="text"
+          maxlength="30" 
           class="form-control"
           :class="{ 'is-invalid': !titleValid }"
           id="titleInput"
@@ -24,6 +25,7 @@
         <input
           v-model="description"
           type="text"
+          maxlength="150" 
           class="form-control"
           :class="{ 'is-invalid': !descriptionValid }"
           id="descriptionInput"
