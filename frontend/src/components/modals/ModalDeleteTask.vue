@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import deleteTask from '@/service/deleteTask.js'
+import deleteTask from '@/service/Tasks/deleteTask.js'
 
 export default {
   name: 'ModalDeleteTask',

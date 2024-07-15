@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import editTask from '../../service/editTask.js'
+import editTask from '../../service/Tasks/editTask.js'
 
 export default {
   name: 'ModalEditTask',

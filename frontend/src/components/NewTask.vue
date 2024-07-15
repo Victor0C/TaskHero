@@ -12,7 +12,7 @@
         <input
           v-model="title"
           type="text"
-          maxlength="30" 
+          maxlength="30"
           class="form-control"
           :class="{ 'is-invalid': !titleValid }"
           id="titleInput"
@@ -25,7 +25,7 @@
         <input
           v-model="description"
           type="text"
-          maxlength="150" 
+          maxlength="150"
           class="form-control"
           :class="{ 'is-invalid': !descriptionValid }"
           id="descriptionInput"
@@ -51,15 +51,17 @@
         Algo deu errado... Tente novamente mais tarde.
       </div>
       <div class="d-flex justify-content-center">
-        <button type="submit" class="btn myButtonDefault addButton rounded-2">Adicionar Tarefa</button>
+        <button type="submit" class="btn myButtonDefault addButton rounded-2">
+          Adicionar Tarefa
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import addTask from '@/service/addTasks';
-import getUsers from '@/service/getUsers'
+import addTask from '@/service/Tasks/addTasks'
+import getUsers from '@/service/Users/getUsers'
 
 export default {
   name: 'NewTask',
@@ -119,7 +121,7 @@ export default {
     },
     validateDate(date) {
       if (!date) {
-        return false 
+        return false
       }
       return true
     },

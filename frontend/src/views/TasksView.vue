@@ -22,8 +22,8 @@ import Task from '../components/Task.vue'
 import ListTasks from '../components/ListTasks.vue'
 import NewTask from '@/components/NewTask.vue'
 import Cookies from 'js-cookie'
-import getTasks from '@/service/getTasks'
-import getPageTasks from '@/service/getPageTasks'
+import getTasks from '@/service/Tasks/getTasks'
+import getPageTasks from '@/service/Tasks/getPageTasks'
 
 export default {
   name: 'TasksView',
