@@ -20,7 +20,7 @@
     </div>
 
     <div class="accordion w-100" :id="`${typeTasks}Accordion`">
-      <Task v-for="task in tasks" :task="task" :typeTask="typeTasks"></Task>
+      <Task v-for="task in tasks" :task="task" :typeTask="typeTasks" @taskUpdated='refreshList'></Task>
     </div>
 
     <nav v-if="pagination.total_page > 1" aria-label="Page navigation example">
@@ -60,7 +60,7 @@ export default {
   components: {
     Task
   },
-  emits: ['searchTasks', 'fetchPage'],
+  emits: ['searchTasks', 'fetchPage', 'refreshList'],
   data() {
     return {
       searchQuery: ''
@@ -72,6 +72,9 @@ export default {
     },
     fetchPage(url) {
       this.$emit('fetchPage', url)
+    },
+    refreshList(){
+      this.$emit('refreshList')
     }
   }
 }

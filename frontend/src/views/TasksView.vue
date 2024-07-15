@@ -13,6 +13,7 @@
       :loading="loading"
       @searchTasks="searchTasks"
       @fetchPage="fetchPage"
+      @refreshList="fetchTasks"
     ></ListTasks>
   </div>
 </template>

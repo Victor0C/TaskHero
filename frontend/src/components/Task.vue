@@ -23,7 +23,7 @@
       <div class="accordion-body d-flex">
         <p><span class="fw-semibold"></span>{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
-          <ModalEditTask :task="task"></ModalEditTask>
+          <ModalEditTask @taskUpdated="taskUpdated" :task="task"></ModalEditTask>
           <ModalDeleteTask :task="task"></ModalDeleteTask>
         </div>
       </div>
@@ -36,6 +36,7 @@ import ModalDeleteTask from './modals/ModalDeleteTask.vue'
 
 export default {
   name: 'Task',
+  emits: ['taskUpdated'],
   props: {
     task: null,
     typeTask: ''
@@ -53,6 +54,9 @@ export default {
       })
 
       return formattedDate
+    },
+    taskUpdated(){
+      this.$emit('taskUpdated')
     }
   }
 }
