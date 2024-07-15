@@ -4,11 +4,10 @@
       <h2>Adicionar uma tarefa</h2>
       <NewTask @taskAdded="fetchTasks"></NewTask>
     </div>
-    
 
     <ListTasks
       :tasks="listTasks.tasks"
-      :typeTasks="'toDo'"
+      :completedTasks="false"
       :pagination="listTasks.pagination"
       :loading="loading"
       @searchTasks="searchTasks"

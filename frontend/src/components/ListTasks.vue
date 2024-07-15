@@ -19,8 +19,8 @@
       Nenhuma tarefa encontrada...
     </div>
 
-    <div class="accordion w-100" :id="`${typeTasks}Accordion`">
-      <Task v-for="task in tasks" :task="task" :typeTask="typeTasks" @taskUpdated='refreshList'></Task>
+    <div class="accordion w-100" :id="`CompletedTask=${completedTasks}Accordion`">
+      <Task v-for="task in tasks" :task="task" :completedTask="completedTasks" @taskUpdated='refreshList'></Task>
     </div>
 
     <nav v-if="pagination.total_page > 1" aria-label="Page navigation example">
@@ -52,7 +52,7 @@ import Task from './Task.vue'
 export default {
   name: 'ListTasks',
   props: {
-    typeTasks: { type: String, required: true },
+    completedTasks: { type: Boolean, required: true },
     tasks: { type: Array, required: true },
     pagination: { type: Object, required: true },
     loading: { type: Boolean, required: true }

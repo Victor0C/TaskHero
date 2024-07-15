@@ -18,13 +18,13 @@
     <div
       :id="`${this.task.id}taskAccordion`"
       class="accordion-collapse collapse"
-      :data-bs-parent="`#${typeTask}Accordion`"
+      :data-bs-parent="`#CompletedTask=${completedTask}Accordion`"
     >
       <div class="accordion-body d-flex">
         <p><span class="fw-semibold"></span>{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
-          <ModalEditTask @taskUpdated="taskUpdated" :task="task"></ModalEditTask>
-          <ModalDeleteTask :task="task"></ModalDeleteTask>
+          <ModalEditTask v-if="!completedTask" @taskUpdated="taskUpdated" :task="task"></ModalEditTask>
+          <ModalDeleteTask v-if="!completedTask":task="task"></ModalDeleteTask>
         </div>
       </div>
     </div>
@@ -38,8 +38,14 @@ export default {
   name: 'Task',
   emits: ['taskUpdated'],
   props: {
-    task: null,
-    typeTask: ''
+    task: {
+      type: Object,
+      required: true
+    },
+    completedTask:{
+      type:String,
+      required: true
+    }
   },
   components: {
     ModalEditTask,
