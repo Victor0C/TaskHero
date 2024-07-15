@@ -27,6 +27,8 @@ class EloquentTasksRepository implements TasksRepositoryInterface
             $query->where('desc', 'like', '%' . $desc . '%');
         }
 
+        $query->orderBy('created_at', 'desc');
+
         return $query->paginate($this->paginate);
     }
 
@@ -47,6 +49,8 @@ class EloquentTasksRepository implements TasksRepositoryInterface
             $query->where('desc', 'like', '%' . $desc . '%');
         }
 
+        $query->orderBy('created_at', 'desc');
+
         return $query->paginate($this->paginate);
     }
 
@@ -61,6 +65,8 @@ class EloquentTasksRepository implements TasksRepositoryInterface
         if ($desc) {
             $query->where('desc', 'like', '%' . $desc . '%');
         }
+
+        $query->orderBy('updated_at', 'desc');
 
         return $query->paginate($this->paginate);
     }
@@ -77,6 +83,7 @@ class EloquentTasksRepository implements TasksRepositoryInterface
             $query->where('desc', 'like', '%' . $desc . '%');
         }
        
+        $query->orderBy('expired_date', 'asc');
 
         return $query->paginate($this->paginate);
     }
