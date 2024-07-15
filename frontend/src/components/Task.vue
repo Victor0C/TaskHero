@@ -11,8 +11,12 @@
       >
         <div class="d-flex justify-content-between align-items-center w-100 me-2">
           {{ task.title }}
-          <small v-if="!completedTask" class="text-muted ms-2">Conclusão para {{ formatDate(task.expired_date) }}</small>
-          <small v-if="completedTask" class="text-muted ms-2">Concluído em {{ formatDate(task.updated_at) }}</small>
+          <small v-if="!completedTask" class="text-muted ms-2"
+            >Conclusão para {{ formatDate(task.expired_date) }}</small
+          >
+          <small v-if="completedTask" class="text-muted ms-2"
+            >Concluído em {{ formatDate(task.updated_at) }}</small
+          >
         </div>
       </button>
     </h2>
@@ -22,7 +26,7 @@
       :data-bs-parent="`#CompletedTask=${completedTask}Accordion`"
     >
       <div class="accordion-body d-flex">
-        <p><span class="fw-semibold"></span>{{ task.desc }}</p>
+        <p class="word-wrap-break max-width-100 overflow-hidden">{{ task.desc }}</p>
         <div class="d-flex gap-1 ms-auto justify-content-end">
           <ModalEditTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalEditTask>
           <ModalDeleteTask v-if="!completedTask" @refreshList="refreshList" :task="task"></ModalDeleteTask>
@@ -43,8 +47,8 @@ export default {
       type: Object,
       required: true
     },
-    completedTask:{
-      type:Boolean,
+    completedTask: {
+      type: Boolean,
       required: true
     }
   },
@@ -62,12 +66,9 @@ export default {
 
       return formattedDate
     },
-    refreshList(){
+    refreshList() {
       this.$emit('refreshList')
     }
-  },
- created(){
-  console.log(this.task)
- }
+  }
 }
 </script>
