@@ -58,6 +58,10 @@ export default {
   },
   methods: {
     formatDate(date) {
+      if(!this.completedTask){
+        date = date + 'T00:00:00'
+      }
+
       const formattedDate = new Date(date).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'short',
