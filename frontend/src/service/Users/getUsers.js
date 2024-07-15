@@ -2,7 +2,7 @@ import api from './api'
 
 export default async function getUsers() {
   try {
-    const {data} = await api.get('/users')
+    const { data } = await api.get('/users')
 
     return data
   } catch (error) {

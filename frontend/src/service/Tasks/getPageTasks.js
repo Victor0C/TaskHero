@@ -1,11 +1,11 @@
-import api from './api'
+import api from '../api'
 import Cookies from 'js-cookie'
 
 export default async function getPageTasks(url) {
   const token = Cookies.get('authToken')
 
   try {
-    const {data} = await api.get(url, {
+    const { data } = await api.get(url, {
       headers: {
         Authorization: `Bearer ${token}`
       }

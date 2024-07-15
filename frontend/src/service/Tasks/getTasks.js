@@ -1,7 +1,7 @@
-import api from './api'
+import api from '../api'
 import Cookies from 'js-cookie'
 
-export default async function getTasks(title='', done='') {
+export default async function getTasks(title = '', done = '') {
   const token = Cookies.get('authToken')
 
   try {
