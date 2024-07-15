@@ -3,15 +3,17 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-myGreen">
         <div class="container-fluid">
-          <div class="d-flex align-items-center">
-            <img
-              src="../assets/logoWhite.png"
-              alt="Logo"
-              class="img-fluid me-2"
-              style="max-height: 1.8rem"
-            />
-            <a class="navbar-brand text-light fs-3 fst-italic">Task Hero</a>
-          </div>
+          <router-link :to="'tasks'" class="text-decoration-none">
+            <div class="d-flex align-items-center">
+              <img
+                src="../assets/logoWhite.png"
+                alt="Logo"
+                class="img-fluid me-2"
+                style="max-height: 1.8rem"
+              />
+              <a class="navbar-brand text-light fs-3 fst-italic">Task Hero</a>
+            </div>
+          </router-link>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -35,7 +37,7 @@
                 >
               </li>
               <li>
-                <a class="nav-link fst-italic fs-5" @click="logout">Sair</a>
+                <a class="nav-link fst-italic fs-5" @click="logout" href="">Sair</a>
               </li>
             </ul>
           </div>
@@ -134,5 +136,8 @@ export default {
 <style scoped>
 .vh-100 {
   height: 100vh;
+}
+.text-decoration-none {
+  text-decoration: none;
 }
 </style>
