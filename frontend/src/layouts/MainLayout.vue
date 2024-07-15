@@ -100,7 +100,7 @@ export default {
     return {
       menuItems: [
         { text: 'Tarefas', route: 'tasks', private: false },
-        { text: 'historic', route: 'historic', private: false },
+        { text: 'Histórico', route: 'historic', private: false },
         { text: 'Usuários', route: 'users', private: true }
       ],
       userRole: null
