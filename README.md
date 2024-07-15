@@ -4,8 +4,16 @@ Processo de instalação e configuração da aplicação:
 
 -Na pasta do backend rode o "compose install" para instalar as dependências, crie seu arquivo .env conforme o .env.example (Só precisa colocar as configurações do banco de dados). Rode as migrations com "php artisan migrate" para criar as tabelas (Você deve ter o database já criado).Logo após "rode php artisan serve" para iniciar o servidor backend
 -Na pasta de frontend rode o "npm install" para instalar as dependências, crie seu arquivo .env conforme o .env.example. Logo após "npm run dev" para iniciar o servidor da aplicação frontend
--Feito os passos anteriores, basta acessar a rota informada no terminal para ter acesso a aplicação
+-Feito os passos anteriores, acesse a rota informada no terminal para ter acesso a aplicação
+-A rotas de user estão sem autenticação, por isso você pode fazer requisição (Post) para /users e criar um usuário admin para teste
+-Modelo de json pronto para um usuário admim:
 
+{
+    "name": "Admin",
+    "email": "admin@example.com",
+    "password": "123456",
+    "role": 1
+}
 
 ABAIXO  AS ORIENTAÇÕES SOBRE O PROJETO:
 
